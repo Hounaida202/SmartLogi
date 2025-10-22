@@ -21,4 +21,17 @@ public class helper {
             }
             System.out.println("choix invalide");
         }
-    }}
+    }
+    public static boolean VerifyLong(String tele){
+
+       try{
+        Long.parseLong(tele);
+        return true;
+       }catch(NumberFormatException e)
+       {
+        return false;
+       }
+    }
+
+
+}
