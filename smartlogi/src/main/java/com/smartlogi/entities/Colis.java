@@ -14,7 +14,7 @@ public class Colis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_colis;
+    private Long id_colis;
 
     private String destination;
     private String adresse;
@@ -42,50 +42,33 @@ public class Colis {
         this.livreur = livreur;
     }
 
-    public int getId_colis() {
+    public long getId_colis() {
         return id_colis;
     }
 
-    public void setId_colis(int id_colis) {
+    public void setId_colis(Long id_colis) {
         this.id_colis = id_colis;
     }
 
     public String getDestination() {
-        return destination;
-    }
-
+        return destination;}
     public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
+        this.destination = destination;}
     public String getAdresse() {
-        return adresse;
-    }
-
+        return adresse;}
     public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
+        this.adresse = adresse;}
     public double getPoids() {
-        return poids;
-    }
-
+        return poids;}
     public void setPoids(double poids) {
-        this.poids = poids;
-    }
-
+        this.poids = poids;}
     public Status getStatus() {
-        return status;
-    }
-
+        return status;}
     public void setStatus(Status status) {
-        this.status = status;
-    }
-
+        this.status = status;}
     public Livreur getLivreur() {
         return livreur;
     }
-
     public void setLivreur(Livreur livreur) {
         this.livreur = livreur;
     }

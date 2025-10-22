@@ -9,7 +9,7 @@ public class Livreur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_livreur;
+    private Long id_livreur;
 
     private String nom;
     private String prenom;
@@ -23,8 +23,7 @@ public class Livreur {
     //  Constructeurs
     public Livreur() {}
 
-    public Livreur(int id_livreur, String nom, String prenom, String vehicule, long tele) {
-        this.id_livreur = id_livreur;
+    public Livreur(String nom, String prenom, String vehicule, long tele) {
         this.nom = nom;
         this.prenom = prenom;
         this.vehicule = vehicule;
@@ -32,11 +31,11 @@ public class Livreur {
     }
 
     //  Getters et setters
-    public int getId_livreur() {
+    public Long getId_livreur() {
         return id_livreur;
     }
 
-    public void setId_livreur(int id_livreur) {
+    public void setId_livreur(Long id_livreur) {
         this.id_livreur = id_livreur;
     }
 
@@ -59,27 +58,19 @@ public class Livreur {
     public String getVehicule() {
         return vehicule;
     }
-
     public void setVehicule(String vehicule) {
-        this.vehicule = vehicule;
-    }
-
+        this.vehicule = vehicule;}
     public long getTele() {
-        return tele;
-    }
-
+        return tele;}
     public void setTele(long tele) {
         this.tele = tele;
     }
-
     public List<Colis> getColisList() {
         return colisList;
     }
-
     public void setColisList(List<Colis> colisList) {
         this.colisList = colisList;
     }
-
     @Override
     public String toString() {
         return "Livreur{" +
