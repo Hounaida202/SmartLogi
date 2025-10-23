@@ -9,6 +9,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
+import static org.hibernate.engine.jdbc.spi.TypeNullability.NULLABLE;
+
 @Entity
 public class Colis {
 
@@ -29,7 +31,7 @@ public class Colis {
 
     // Relation : plusieurs colis pour un livreur
     @ManyToOne
-    @JoinColumn(name = "id_livreur") //  crée la clé étrangère dans la table Colis
+    @JoinColumn(name = "id_livreur", nullable = true)
     private Livreur livreur;
 
     public Colis() {}

@@ -103,7 +103,7 @@ public class LivreurMetier {
             livreur.setTele(tele);
 
             // ✅ Modifier
-            service.ajouterLivreur(livreur); // save() fait update si ID existe
+            service.ajouterLivreur(livreur);
             System.out.println("✅ Modifié!");
         } else {
             System.out.println("❌ Non trouvé!");

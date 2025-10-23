@@ -21,8 +21,8 @@ public class Menu {
             System.out.println("2-supprimer livreur");
             System.out.println("3-modifier livreur");
             System.out.println("4-add colis");
-
-            System.out.println("5- quitter");
+            System.out.println("5- assigner un colis a un livreur");
+            System.out.println("6- quitter");
             choix = helper.verifierchoix(scanner, 1, 9);
             LivreurMetier as=new LivreurMetier();
             ColisMetier Cs=new ColisMetier();
@@ -40,12 +40,15 @@ public class Menu {
                 case 4:
                     Cs.AddColis();
                     break;
-
                 case 5:
+                    Cs.UpdatePackage();
+                    break;
+
+                case 6:
                     System.out.println("programme exité");
                     break;
             }
-        } while (choix != 5);
+        } while (choix != 6);
     }
 
 }
