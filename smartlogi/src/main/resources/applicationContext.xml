@@ -2,14 +2,79 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <!-- Activation de l'annotation scanning -->
-    <context:component-scan base-package="com.smartlogi"/>
+    <!-- Chargement des properties -->
+    <context:property-placeholder location="classpath:application.properties"/>
 
-    <!-- Configuration pour Spring Data JPA -->
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager"/>
+    <!-- DataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="${spring.datasource.url}"/>
+        <property name="username" value="${spring.datasource.username}"/>
+        <property name="password" value="${spring.datasource.password}"/>
+    </bean>
+
+    <!-- EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.smartlogi.entities"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"/>
+                <property name="showSql" value="true"/>
+            </bean>
+
+        </property>
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- Activation des transactions -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- Configuration Spring Data JPA - C'EST LA CLÉ ! -->
+    <jpa:repositories base-package="com.smartlogi.repositories"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>
+
+    <!-- Service Beans - Injection directe des repositories -->
+    <bean id="colisService" class="com.smartlogi.services.ColisService">
+        <property name="colisRepository" ref="colisRepository"/>
+    </bean>
+
+    <bean id="livreurService" class="com.smartlogi.services.LivreurService">
+        <property name="livreurRepository" ref="livreurRepository"/>
+    </bean>
+
+    <!-- Beans de démonstration pour les scopes -->
+    <bean id="messageSingleton" class="java.lang.String">
+        <constructor-arg value="Je suis un bean singleton"/>
+    </bean>
+
+    <bean id="messagePrototype" class="java.lang.String" scope="prototype">
+        <constructor-arg value="Je suis un bean prototype - nouvelle instance à chaque fois"/>
+    </bean>
+
 </beans>
