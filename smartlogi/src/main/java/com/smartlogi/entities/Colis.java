@@ -16,7 +16,7 @@ public class Colis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_colis;
+    private Long ID;
 
     private String destination;
     private String adresse;
@@ -45,11 +45,11 @@ public class Colis {
     }
 
     public long getId_colis() {
-        return id_colis;
+        return ID;
     }
 
     public void setId_colis(Long id_colis) {
-        this.id_colis = id_colis;
+        this.ID = id_colis;
     }
 
     public String getDestination() {

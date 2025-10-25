@@ -9,12 +9,13 @@ public class Livreur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_livreur;
+    private Long id;  // au lieu de id_livreur
+
 
     private String nom;
     private String prenom;
     private String vehicule;
-    private long tele;
+    private Long tele;
 
     //  Un livreur peut avoir plusieurs colis
     @OneToMany(mappedBy = "livreur", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -30,14 +31,9 @@ public class Livreur {
         this.tele = tele;
     }
 
-    //  Getters et setters
-    public Long getId_livreur() {
-        return id_livreur;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId_livreur(Long id_livreur) {
-        this.id_livreur = id_livreur;
-    }
 
     public String getNom() {
         return nom;
@@ -71,10 +67,12 @@ public class Livreur {
     public void setColisList(List<Colis> colisList) {
         this.colisList = colisList;
     }
+
+
     @Override
     public String toString() {
         return "Livreur{" +
-                "id_livreur=" + id_livreur +
+                "id_livreur=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", vehicule='" + vehicule + '\'' +

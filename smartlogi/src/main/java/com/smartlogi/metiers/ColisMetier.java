@@ -1,3 +1,4 @@
+/*
 package com.smartlogi.metiers;
 
 import com.smartlogi.entities.Colis;
@@ -100,7 +101,7 @@ public class ColisMetier {
         // --- Étape 5 : sauvegarder ---
         colisService.ajouterColis(colis);
 
-        System.out.println("Colis assigné au livreur !" + livreur.getId_livreur());
+        System.out.println("Colis assigné au livreur !" + livreur.getId());
     }
 
-}
+}*/
