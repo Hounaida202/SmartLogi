@@ -29,7 +29,6 @@ public class Colis {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    // Relation : plusieurs colis pour un livreur
     @ManyToOne
     @JoinColumn(name = "id_livreur", nullable = true)
     private Livreur livreur;
@@ -74,4 +73,18 @@ public class Colis {
     public void setLivreur(Livreur livreur) {
         this.livreur = livreur;
     }
+
+
+    @Override
+    public String toString() {
+        return "Colis{" +
+                "ID=" + ID +
+                ", destination='" + destination + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", poids=" + poids +
+                ", status=" + status +
+
+                '}';
+    }
+
 }

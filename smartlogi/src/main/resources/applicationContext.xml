@@ -56,22 +56,25 @@
         <property name="livreurRepository"  ref="livreurRepository" />
     </bean>
 
-    <bean id="ColisService" class="com.smartlogi.services.ColisService">
-        <property name="colisRepository"  ref="colisRepository" />
-    </bean>
+<!--    <bean id="ColisService" class="com.smartlogi.services.ColisService">-->
+<!--        <property name="colisRepository"  ref="colisRepository" />-->
+<!--    </bean>-->
 
     <bean id="LivreurMetier" class="com.smartlogi.metiers.LivreurMetier">
         <constructor-arg name="livreurService" ref="LivreurService"/>
     </bean>
 
     <bean id="Menu"  class="com.smartlogi.Menu">
-        <constructor-arg name="colisService" ref="ColisService"/>
         <constructor-arg name="livreur" ref="LivreurMetier"/>
+        <constructor-arg name="colis" ref="ColisMetier"/>
     </bean>
 
 
 
-
+<!--    <bean id="colisMetier" class="com.smartlogi.metiers.ColisMetier" >-->
+<!--        <constructor-arg name="colisService" ref="ColisService" />-->
+<!--    </bean>-->
+    <bean id="ColisMetier" class="com.smartlogi.metiers.ColisMetier"/>
 
 
 </beans>

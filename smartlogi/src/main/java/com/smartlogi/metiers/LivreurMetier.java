@@ -24,14 +24,22 @@ public class LivreurMetier {
         System.out.print("ajouter le vehicule : ");
         String vehicule = scan.nextLine();
 
-        System.out.print("ajouter le numéro de téléphone : ");
-        long tele = scan.nextLong();
-        scan.nextLine();
-
+        long tele;
+        do {
+            System.out.print("Ajouter le numéro de téléphone : ");
+            while (!scan.hasNextLong()) {
+                System.out.println("Entrez un numero valide !");
+                scan.next();
+            }
+            tele = scan.nextLong();
+            if (tele <= 0) {
+                System.out.println(" Le numéro doit être positif ");
+            }
+            scan.nextLine();
+        } while (tele <= 0);
         Livreur livreur = new Livreur(nom, prenom, vehicule, tele);
-
         Livreur saved = livreurService.ajouterLivreur(livreur);
-        System.out.println("✅ Livreur sauvegardé avec ID : " + saved.getId());
+        System.out.println( saved.getId());
     }
     public void deleteDelivery(){
         Scanner scan = new Scanner(System.in);
@@ -47,7 +55,7 @@ public class LivreurMetier {
     public void modifyDelivery() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.print("👉 Entrez l'ID du livreur à modifier : ");
+        System.out.print(" Entrez l'ID du livreur à modifier : ");
         Long id = scan.nextLong();
         scan.nextLine();
 
@@ -72,7 +80,7 @@ public class LivreurMetier {
 
         livreurService.mettreAJourLivreur(livreur);
 
-        System.out.println("✅ Livreur mis à jour avec succès !");
+        System.out.println("Livreur mis à jour avec succès !");
     }
 
 

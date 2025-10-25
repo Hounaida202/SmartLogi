@@ -9,7 +9,7 @@ public class Livreur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // au lieu de id_livreur
+    private Long id;
 
 
     private String nom;
@@ -17,11 +17,9 @@ public class Livreur {
     private String vehicule;
     private Long tele;
 
-    //  Un livreur peut avoir plusieurs colis
     @OneToMany(mappedBy = "livreur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Colis> colisList;
 
-    //  Constructeurs
     public Livreur() {}
 
     public Livreur(String nom, String prenom, String vehicule, long tele) {
